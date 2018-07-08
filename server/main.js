@@ -18,6 +18,11 @@ server.get('/time', (req, res) => {
     })
 })
 
+server.post('/user', (req, res) => {
+    console.log(req.body.username)
+    console.log(req.body.password)
+})
+
 server.listen(port, () => {
     console.log(`The server is listening on port ${port}.`)
 })
