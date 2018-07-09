@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Signup extends Component {
+class SignUp extends Component {
   constructor (props) {
     super(props)
     this.state = { username: '', password: '' }
@@ -16,14 +16,14 @@ class Signup extends Component {
           password: <input type="password" value={this.state.password} onChange={e => this.setState({ username: e.target.value })} />
         </div>
         <div>
-          <button onClick={this.signup.bind(this)}>signup</button>
+          <button onClick={this.signUp.bind(this)}>signup</button>
         </div>
       </div>
     )
   }
-  signup () {
+  signUp () {
     console.log(`Signing in with username "${this.state.username}" and password "${this.state.password}".`)
   }
 }
 
-export default Signup
+export default SignUp
