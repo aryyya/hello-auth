@@ -3,5 +3,78 @@
 }
 
 .app__page {
-  padding: 25px;
-} 
+  padding: 25px 50px;
+}
+
+@media (min-width: 800px) {
+  .app__page {
+    padding: 25px 50px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .app__page {
+    padding: 25px 100px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .app__page {
+    padding: 25px 150px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .app__page {
+    padding: 25px 200px;
+  }
+}
+
+.title {
+  font-size: 22px;
+  margin: 20px 0;
+}
+
+.title:first-child {
+  margin-top: 0;
+}
+
+.title:last-child {
+  margin-bottom: 0;
+}
+
+.sub-title {
+  font-size: 17px;
+  margin: 17.5px 0;
+}
+
+.sub-title:first-child {
+  margin-top: 0;
+}
+
+.sub-title:last-child {
+  margin-bottom: 0;
+}
+
+.form__section {
+  margin: 15px 0;
+}
+
+.form__section:first-child {
+  margin-top: 0;
+}
+
+.form__section:last-child {
+  margin-bottom: 0;
+}
+
+.form__section input {
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+.form__section input:focus {
+  outline: none;
+  border-color: #aaa;
+}

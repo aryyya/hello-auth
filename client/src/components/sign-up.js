@@ -8,15 +8,16 @@ class SignUp extends Component {
   render () {
     return (
       <div className="signup">
-        <div>signup:</div>
-        <div>
-          username: <input type="text" value={this.state.username} onChange={e => this.setState({ username: e.target.value })} />
+        <div className="title">Sign up for an account.</div>
+        <div className="sub-title">Create a username and password.</div>
+        <div className="form__section">
+          Username: <input type="text" value={this.state.username} onChange={e => this.setState({ username: e.target.value })} />
         </div>
-        <div>
-          password: <input type="password" value={this.state.password} onChange={e => this.setState({ username: e.target.value })} />
+        <div className="form__section">
+          Password: <input type="password" value={this.state.password} onChange={e => this.setState({ password: e.target.value })} />
         </div>
-        <div>
-          <button onClick={this.signUp.bind(this)}>signup</button>
+        <div className="form__section">
+          <button onClick={this.signUp.bind(this)}>Sign up</button>
         </div>
       </div>
     )

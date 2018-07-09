@@ -13,7 +13,7 @@ const getLink = page => (
 )
 
 const getLinkItem = page => (
-  <li className="top-bar__link-item">
+  <li className="top-bar__link-item" key={page.name}>
     {getLink(page)}
   </li>
 )

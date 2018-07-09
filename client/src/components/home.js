@@ -4,7 +4,8 @@ class Home extends Component {
   render () {
     return (
       <div className="home">
-        <p>home page</p>
+        <p className="title">This is the home page.</p>
+        <p className="sub-title">Use the top bar to navigate.</p>
       </div>
     )
   }

@@ -6,6 +6,30 @@
   align-items: center;
 }
 
+@media (min-width: 800px) {
+  .top-bar {
+    padding: 10px 50px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .top-bar {
+    padding: 10px 100px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .top-bar {
+    padding: 10px 150px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .top-bar {
+    padding: 10px 200px;
+  }
+}
+
 .top-bar__title {
   font-size: 24px;
 }

@@ -8,15 +8,16 @@ class LogIn extends Component {
   render () {
     return (
       <div className="login">
-        <div>login:</div>
-        <div>
-          username: <input type="text" value={this.state.username} onChange={e => this.setState({ username: e.target.value })} />
+        <div className="title">Log in to your account.</div>
+        <div className="sub-title">Provide your previously created username and password.</div>
+        <div className="form__section">
+          Username: <input type="text" value={this.state.username} onChange={e => this.setState({ username: e.target.value })} />
         </div>
-        <div>
-          password: <input type="password" value={this.state.password} onChange={e => this.setState({ username: e.target.value })} />
+        <div className="form__section">
+          Password: <input type="password" value={this.state.password} onChange={e => this.setState({ password: e.target.value })} />
         </div>
-        <div>
-          <button onClick={this.logIn.bind(this)}>login</button>
+        <div className="form__section">
+          <button onClick={this.logIn.bind(this)}>Log in</button>
         </div>
       </div>
     )
