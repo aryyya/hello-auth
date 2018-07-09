@@ -1,0 +1,30 @@
+.top-bar {
+  padding: 10px 50px;
+  background-color: #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-bar__title {
+  font-size: 24px;
+}
+
+.top-bar__link-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.top-bar__link-item {
+  display: inline-block;
+  font-weight: bold;
+}
+
+.top-bar__link-item:not(:last-child) {
+  margin-right: 20px;
+}
+
+.top-bar__link {
+  text-decoration: none;
+  color: #555;
+}
