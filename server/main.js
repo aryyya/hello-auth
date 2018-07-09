@@ -20,6 +20,15 @@ server.get('/secret', (req, res) => {
   })
 })
 
+server.post('/login', (req, res) => {
+  const { username, password } = req.body
+  if (username === 'elon_musk' && password === 'tesla') {
+    res.json({ status: 'success' })
+  } else {
+    res.json({ status: 'failure' })
+  }
+})
+
 server.listen(port, () => {
     console.log(`The server is listening on port ${port}.`)
 })

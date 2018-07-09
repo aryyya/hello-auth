@@ -1,11 +1,21 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+
+import Message from './message'
 
 class LogIn extends Component {
   constructor (props) {
     super(props)
-    this.state = { username: '', password: '' }
+    this.state = {
+      username: '',
+      password: '',
+      message: '',
+      type: ''
+    }
   }
   render () {
+    const { message, type } = this.state
+
     return (
       <div className="login">
         <div className="title">Log in to your account.</div>
@@ -19,11 +29,38 @@ class LogIn extends Component {
         <div className="form__section">
           <button onClick={this.logIn.bind(this)}>Log in</button>
         </div>
+        <Message text={message} type={type} />
       </div>
     )
   }
   logIn () {
-    console.log(`Logging in with username "${this.state.username}" and password "${this.state.password}".`)
+    const { username, password } = this.state
+
+    axios.post('/login', {
+      username,
+      password
+    })
+      .then(res => {
+        const { status } = res.data
+        if (status === 'success') {
+          this.setState({
+            message: 'Logged in!',
+            type: 'success'
+          })
+          this.props.history.push('/')
+        } else {
+          this.setState({
+            message: 'Invalid username/password combination.',
+            type: 'info'
+          })
+        }
+      })
+      .catch(err => {
+        this.setState({
+          message: 'Could not connect to the server.',
+          type: 'error'
+        })
+      })
   }
 }
 
