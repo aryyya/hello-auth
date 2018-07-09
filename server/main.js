@@ -14,6 +14,12 @@ server.get('/', (req, res) => {
     })
 })
 
+server.get('/secret', (req, res) => {
+  res.json({
+    message: 'The cake is a lie!'
+  })
+})
+
 server.listen(port, () => {
     console.log(`The server is listening on port ${port}.`)
 })
