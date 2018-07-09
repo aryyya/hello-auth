@@ -15,9 +15,9 @@ const users = [
 ]
 
 server.get('/', (req, res) => {
-    res.json({
-        message: 'Hello, world!'
-    })
+  res.json({
+    message: 'Hello, world!'
+  })
 })
 
 server.get('/secret', (req, res) => {
@@ -40,5 +40,5 @@ server.post('/login', (req, res) => {
 })
 
 server.listen(port, () => {
-    console.log(`The server is listening on port ${port}.`)
+  console.log(`The server is listening on port ${port}.`)
 })
