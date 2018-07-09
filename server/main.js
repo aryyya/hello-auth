@@ -8,6 +8,12 @@ const port = process.env.PORT || 8080
 server.use(morgan('dev'))
 server.use(bodyParser.json())
 
+const users = [
+  { id: 0, username: 'bill_gates', password: 'microsoft' },
+  { id: 1, username: 'steve_jobs', password: 'apple' },
+  { id: 2, username: 'linus_torvalds', password: 'linux' }
+]
+
 server.get('/', (req, res) => {
     res.json({
         message: 'Hello, world!'
@@ -22,11 +28,15 @@ server.get('/secret', (req, res) => {
 
 server.post('/login', (req, res) => {
   const { username, password } = req.body
-  if (username === 'elon_musk' && password === 'tesla') {
-    res.json({ status: 'success' })
-  } else {
-    res.json({ status: 'failure' })
-  }
+
+  let isValid = false
+  users.forEach(user => {
+    if (user.username === username && user.password === password) {
+      isValid = true
+    }
+  })
+
+  res.json({ status: isValid ? 'success' : 'failure' })
 })
 
 server.listen(port, () => {
