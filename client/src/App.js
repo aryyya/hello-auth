@@ -1,28 +1,30 @@
 import React, { Component } from 'react'
 import './App.css'
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
+import Home from './components/home'
+import Signup from './components/signup'
+import Login from './components/login'
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { time: null }
-  }
-  render() {
+  render () {
     return (
       <div className="App">
-        <p>According to the server, the current time is: {this.state.time}</p>
+        <BrowserRouter>
+          <div>
+            <ul>
+              <li><Link to="/">home</Link></li>
+              <li><Link to="/signup">signup</Link></li>
+              <li><Link to="/login">login</Link></li>
+            </ul>
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/login" component={Login} />
+            </Switch>
+          </div>
+        </BrowserRouter>
       </div>
     )
-  }
-  componentDidMount() {
-    const getTime = () => {
-      fetch('/time')
-        .then(res => res.json())
-        .then(res => {
-          this.setState({ time: res.time })
-        })
-    }
-    setInterval(getTime, 1000)
-    getTime()
   }
 }
 
