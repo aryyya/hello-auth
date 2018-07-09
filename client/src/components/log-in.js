@@ -17,7 +17,7 @@ class LogIn extends Component {
     const { message, type } = this.state
 
     return (
-      <div className="login">
+      <form className="login" onSubmit={this.logIn.bind(this)}>
         <div className="title">Log in to your account.</div>
         <div className="sub-title">Provide your previously created username and password.</div>
         <div className="form__section">
@@ -27,13 +27,14 @@ class LogIn extends Component {
           Password: <input type="password" value={this.state.password} onChange={e => this.setState({ password: e.target.value })} />
         </div>
         <div className="form__section">
-          <button onClick={this.logIn.bind(this)}>Log in</button>
+          <input type="submit" value="Log in" />
         </div>
         <Message text={message} type={type} />
-      </div>
+      </form>
     )
   }
-  logIn () {
+  logIn (event) {
+    event.preventDefault()
     const { username, password } = this.state
 
     axios.post('/login', {

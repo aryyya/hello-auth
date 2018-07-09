@@ -7,7 +7,7 @@ class SignUp extends Component {
   }
   render () {
     return (
-      <div className="signup">
+      <form className="signup" onSubmit={this.signUp.bind(this)}>
         <div className="title">Sign up for an account.</div>
         <div className="sub-title">Create a username and password.</div>
         <div className="form__section">
@@ -17,13 +17,13 @@ class SignUp extends Component {
           Password: <input type="password" value={this.state.password} onChange={e => this.setState({ password: e.target.value })} />
         </div>
         <div className="form__section">
-          <button onClick={this.signUp.bind(this)}>Sign up</button>
+          <input type="submit" value="Sign up" />
         </div>
-      </div>
+      </form>
     )
   }
-  signUp () {
-    console.log(`Signing in with username "${this.state.username}" and password "${this.state.password}".`)
+  signUp (event) {
+    event.preventDefault()
   }
 }
 
