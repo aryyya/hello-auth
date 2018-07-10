@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 class Home extends Component {
   constructor (props) {
@@ -24,9 +25,19 @@ class Home extends Component {
     )
   }
   getSecret () {
-    fetch('/secret')
-      .then(res => res.json())
-      .then(res => this.setState({ secret: res.message }))
+    axios.get('/secret', {
+      headers: {
+        'Authorization': `Bearer: ${localStorage.getItem('token')}`
+      }
+    })
+      .then(res => {
+        const { status, message } = res.data
+        if (status.type === 'success') {
+          this.setState({ secret: message })
+        } else if (status.type === 'failure' && status.code === 'invalid-token') {
+          this.props.history.push('/log-in')
+        }
+      })
       .catch(err => console.error(err))
   }
 }

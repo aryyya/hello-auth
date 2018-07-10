@@ -42,12 +42,13 @@ class LogIn extends Component {
       password
     })
       .then(res => {
-        const { status } = res.data
+        const { status, token } = res.data
         if (status === 'success') {
           this.setState({
             message: 'Logged in!',
             type: 'success'
           })
+          localStorage.setItem('token', token)
           this.props.history.push('/')
         } else {
           this.setState({
