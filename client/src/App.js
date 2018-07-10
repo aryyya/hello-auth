@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import './styles/main.scss'
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Router, Switch, Route } from 'react-router-dom'
+import history from './history'
 
 import TopBar from './components/top-bar'
 import Home from './components/home'
@@ -12,7 +13,7 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <Router>
+        <Router history={history}>
           <div>
             <TopBar />
             <div className="app__page">

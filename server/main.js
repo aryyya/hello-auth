@@ -100,7 +100,9 @@ server.post('/login', (req, res) => {
   })
 
   res.json({
-    status: 'success',
+    status: {
+      type: 'success'
+    },
     token
   })
 })

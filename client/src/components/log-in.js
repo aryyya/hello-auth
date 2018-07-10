@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import axios from '../axios'
 
 import Message from './message'
 
@@ -43,12 +43,11 @@ class LogIn extends Component {
     })
       .then(res => {
         const { status, token } = res.data
-        if (status === 'success') {
+        if (status.type === 'success') {
           this.setState({
             message: 'Logged in!',
             type: 'success'
           })
-          localStorage.setItem('token', token)
           this.props.history.push('/')
         } else {
           this.setState({
