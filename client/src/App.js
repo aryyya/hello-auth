@@ -8,6 +8,7 @@ import TopBar from './components/top-bar'
 import Home from './components/home'
 import SignUp from './components/sign-up'
 import LogIn from './components/log-in'
+import LogOut from './components/log-out'
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
                 <Route path="/" exact component={Home} />
                 <Route path="/sign-up" component={SignUp} />
                 <Route path="/log-in" component={LogIn} />
+                <Route path="/log-out" component={LogOut} />
               </Switch>
             </div>
           </div>

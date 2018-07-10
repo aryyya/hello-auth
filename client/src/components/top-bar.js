@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 
 const pages = [
   { name: 'Sign up', path: '/sign-up' },
-  { name: 'Log in', path: '/log-in' }
+  { name: 'Log in', path: '/log-in' },
+  { name: 'Log out', path: '/log-out' }
 ]
 
 const getLink = page => (

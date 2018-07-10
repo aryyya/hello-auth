@@ -42,7 +42,7 @@ class LogIn extends Component {
       password
     })
       .then(res => {
-        const { status, token } = res.data
+        const { status } = res.data
         if (status.type === 'success') {
           this.setState({
             message: 'Logged in!',

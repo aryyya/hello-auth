@@ -20,7 +20,7 @@ instance.interceptors.response.use(response => {
   }
 
   else if (status && status.type === 'failure' && status.code === 'invalid-token') {
-    localStorage.setItem('token', null)
+    localStorage.removeItem('token')
     history.push('/log-in')
   }
 
