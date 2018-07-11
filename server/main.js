@@ -109,7 +109,9 @@ server.post('/login', (req, res) => {
 
 const isAuthenticated = (req, res, next) => {
   try {
-    req.token = getJWTPayload(req.header('Authorization').replace('Bearer: ', ''))
+    const authorizationHeader = req.header('Authorization')
+    const encodedToken = authorizationHeader.replace('Bearer: ', '')
+    req.token = getJWTPayload(encodedToken)
     next()
   } catch (err) {
     res.json({
