@@ -4,26 +4,22 @@ class LogOut extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      countdown: 3,
-      intervalId: null
-    }
+      countdown: 3    }
   }
   componentDidMount () {
     localStorage.removeItem('token')
     localStorage.removeItem('isAuthenticated')
-    this.setState({
-      intervalId: setInterval(() => {
-        const { countdown, intervalId } = this.state
-        this.setState({ countdown: countdown - 1})
-        if (countdown <= 0) {
-          clearInterval(intervalId)
-          this.props.history.push('/')
-        }
-      }, 1000)
-    })
+    this.intervalId = setInterval(() => {
+      const { countdown } = this.state
+      this.setState({ countdown: countdown - 1})
+      if (countdown <= 0) {
+        clearInterval(this.intervalId)
+        this.props.history.push('/')
+      }
+    }, 1000)
   }
   componentWillUnmount () {
-    clearInterval(this.state.intervalId)
+    clearInterval(this.intervalId)
   }
   render () {
     const { countdown } = this.state
