@@ -10,6 +10,7 @@ class LogOut extends Component {
   }
   componentDidMount () {
     localStorage.removeItem('token')
+    localStorage.removeItem('isAuthenticated')
     this.setState({
       intervalId: setInterval(() => {
         const { countdown, intervalId } = this.state

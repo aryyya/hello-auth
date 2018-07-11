@@ -23,9 +23,9 @@ const getUserId = (() => {
 })()
 
 const users = [
-  { id: getUserId(), username: 'bill_gates', password: 'microsoft', roles: [ 'standard' ], secret: 'Use Windows!' },
-  { id: getUserId(), username: 'steve_jobs', password: 'apple', roles: [ 'standard' ], secret: 'Use macOS!' },
-  { id: getUserId(), username: 'linus_torvalds', password: 'linux', roles: [ 'administrator' ], secret: 'Fuck you!' }
+  { id: getUserId(), username: 'bill_gates', password: 'microsoft', roles: [ 'standard' ], secret: 'Use Windows!', firstName: 'Bill' },
+  { id: getUserId(), username: 'steve_jobs', password: 'apple', roles: [ 'standard' ], secret: 'Use macOS!', firstName: 'Steve' },
+  { id: getUserId(), username: 'linus_torvalds', password: 'linux', roles: [ 'administrator' ], secret: 'Fuck you!', firstName: 'Linus' }
 ]
 
 // JWT
@@ -104,6 +104,26 @@ server.post('/login', (req, res) => {
       type: 'success'
     },
     token
+  })
+})
+
+const isAuthenticated = (req, res, next) => {
+  try {
+    req.token = getJWTPayload(req.header('Authorization').replace('Bearer: ', ''))
+    next()
+  } catch (err) {
+    res.json({
+      status: {
+        type: 'failure',
+        code: 'invalid-token'
+      }
+    })
+  }
+}
+
+server.get('/name', isAuthenticated, (req, res) => {
+  res.json({
+    name: users[req.token.id].firstName
   })
 })
 

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from '../axios'
 
+import Greeter from './greeter'
+
 class Home extends Component {
   constructor (props) {
     super(props)
@@ -14,6 +16,7 @@ class Home extends Component {
       <div className="home">
         <p className="title">This is the home page.</p>
         <p className="sub-title">Use the top bar to navigate.</p>
+        <Greeter />
         <button onClick={this.getSecret.bind(this)}>Ask the server for a secret</button>
         {secret !== '' ? (
           <div>

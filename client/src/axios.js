@@ -17,10 +17,12 @@ instance.interceptors.response.use(response => {
 
   if (status && status.type === 'success' && token) {
     localStorage.setItem('token', token)
+    localStorage.setItem('isAuthenticated', true)
   }
 
   else if (status && status.type === 'failure' && status.code === 'invalid-token') {
     localStorage.removeItem('token')
+    localStorage.removeItem('isAuthenticated')
     history.push('/log-in')
   }
 
