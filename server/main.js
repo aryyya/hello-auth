@@ -43,33 +43,14 @@ const getJWTPayload = token => {
   return jwt.verify(token, secret)
 }
 
-// ROUTES
+// CUSTOM MIDDLEWARE
 
-server.get('/', (req, res) => {
-  res.json({
-    message: 'Hello, world!'
-  })
-})
-
-server.get('/secret', (req, res) => {
-
+const isAuthenticated = (req, res, next) => {
   try {
-    const token = getJWTPayload(req.header('Authorization').replace('Bearer: ', ''))
-
-    let message = ''
-    users.forEach(user => {
-      if (user.id === token.id) {
-        message = user.secret
-      }
-    })
-  
-    res.json({
-      status: {
-        type: 'success'
-      },
-      message
-    })
-
+    const authorizationHeader = req.header('Authorization')
+    const encodedToken = authorizationHeader.replace('Bearer: ', '')
+    req.token = getJWTPayload(encodedToken)
+    next()
   } catch (err) {
     res.json({
       status: {
@@ -78,17 +59,25 @@ server.get('/secret', (req, res) => {
       }
     })
   }
+}
+
+const getUser = (req, res, next) => {
+  req.user = users[req.token.id]
+  next()
+}
+
+// ROUTES
+
+server.get('/', (req, res) => {
+  res.json({
+    message: 'Hello, world!'
+  })
 })
 
 server.post('/login', (req, res) => {
   const { username, password } = req.body
 
-  let user = null
-  users.forEach(dbUser => {
-    if (dbUser.username === username && dbUser.password === password) {
-      user = dbUser
-    }
-  })
+  const user = users.find(user => user.username === username && user.password === password)
 
   if (!user) {
     res.json({ status: 'failure' })
@@ -107,25 +96,18 @@ server.post('/login', (req, res) => {
   })
 })
 
-const isAuthenticated = (req, res, next) => {
-  try {
-    const authorizationHeader = req.header('Authorization')
-    const encodedToken = authorizationHeader.replace('Bearer: ', '')
-    req.token = getJWTPayload(encodedToken)
-    next()
-  } catch (err) {
-    res.json({
-      status: {
-        type: 'failure',
-        code: 'invalid-token'
-      }
-    })
-  }
-}
-
-server.get('/name', isAuthenticated, (req, res) => {
+server.get('/name', isAuthenticated, getUser, (req, res) => {
   res.json({
-    name: users[req.token.id].firstName
+    name: req.user.firstName
+  })
+})
+
+server.get('/secret', isAuthenticated, getUser, (req, res) => {
+  res.json({
+    status: {
+      type: 'success'
+    },
+    message: req.user.secret
   })
 })
 
