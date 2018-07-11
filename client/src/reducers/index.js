@@ -1,5 +1,6 @@
 const initialState = {
-  isLoggedIn: false
+  isLoggedIn: false,
+  name: 'Fes'
 }
 
 export const reducers = (state = initialState, action) => {
@@ -8,6 +9,8 @@ export const reducers = (state = initialState, action) => {
       return { ...state, isLoggedIn: true }
     case 'log-out':
       return { ...state, isLoggedIn: false }
+    case 'set-name':
+      return { ...state, name: action.name }
     default:
       return state
   }

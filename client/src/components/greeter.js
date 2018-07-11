@@ -1,38 +1,29 @@
 import React, { Component } from 'react'
-import axios from '../axios'
+import { connect } from 'react-redux'
+import { setName, getName } from '../actions'
 
 class Greeter extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      name: ''
-    }
-  }
   componentDidMount () {
-    if (localStorage.getItem('isAuthenticated')) {
-      this.getData()
-    }
-  }
-  getData () {
-    axios.get('/name')
-    .then(res => {
-      this.setState({ name: res.data.name })
-    })
+    setTimeout(() => {
+      this.props.getName()
+    }, 1000)
   }
   render () {
-    const { name } = this.state
-
-    if (!name) {
-      return <div></div>
-    }
-
     return (
-      <div className="greeter sub-title">
-        Hello, {name}!
+      <div className="greeter">
+        Hello, {this.props.name}.
       </div>
     )
   }
-
 }
 
-export default Greeter
+const mapStateToProps = state => ({
+  ...state
+})
+
+const mapDispatchToProps = dispatch => ({
+  setName: name => dispatch(setName(name)),
+  getName: () => dispatch(getName())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Greeter)
