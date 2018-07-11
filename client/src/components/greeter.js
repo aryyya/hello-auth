@@ -10,11 +10,14 @@ class Greeter extends Component {
   }
   componentDidMount () {
     if (localStorage.getItem('isAuthenticated')) {
-      axios.get('/name')
-        .then(res => {
-          this.setState({ name: res.data.name })
-        })
+      this.getData()
     }
+  }
+  getData () {
+    axios.get('/name')
+    .then(res => {
+      this.setState({ name: res.data.name })
+    })
   }
   render () {
     const { name } = this.state

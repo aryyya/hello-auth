@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+import Greeter from './greeter'
+
 const pages = [
   { name: 'Sign up', path: '/sign-up' },
   { name: 'Log in', path: '/log-in' },
@@ -24,6 +26,7 @@ class TopBar extends Component {
         <div className="top-bar__title">
           {getLink({name: 'hello-auth', path: '/'})}
         </div>
+        <Greeter />
         <ul className="top-bar__links-list">
           {pages.map(getLinkItem)}
         </ul>
