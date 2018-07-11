@@ -23,9 +23,9 @@ const getUserId = (() => {
 })()
 
 const users = [
-  { id: getUserId(), username: 'bill_gates', password: 'microsoft', roles: [ 'standard' ], secret: 'Use Windows!', firstName: 'Bill' },
-  { id: getUserId(), username: 'steve_jobs', password: 'apple', roles: [ 'standard' ], secret: 'Use macOS!', firstName: 'Steve' },
-  { id: getUserId(), username: 'linus_torvalds', password: 'linux', roles: [ 'administrator' ], secret: 'Fuck you!', firstName: 'Linus' }
+  { id: getUserId(), username: 'bg', password: 'bg', roles: [ 'standard' ], secret: 'Use Windows!', firstName: 'Bill' },
+  { id: getUserId(), username: 'sj', password: 'sj', roles: [ 'standard' ], secret: 'Use macOS!', firstName: 'Steve' },
+  { id: getUserId(), username: 'lt', password: 'lt', roles: [ 'administrator' ], secret: 'Fuck you!', firstName: 'Linus' }
 ]
 
 // JWT
